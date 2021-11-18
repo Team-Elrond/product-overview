@@ -1,6 +1,6 @@
 # Atelier Product Overview API
 
-![tests](https://github.com/Team-Elrond/product-overview/actions/workflows/node.js.yml/badge.svg) [![codecov](https://codecov.io/gh/Team-Elrond/product-overview/branch/main/graph/badge.svg?token=FQ0326VqEJ)](https://codecov.io/gh/Team-Elrond/product-overview)
+![tests](https://github.com/Team-Elrond/product-overview/actions/workflows/codecov.yml/badge.svg) [![codecov](https://codecov.io/gh/Team-Elrond/product-overview/branch/main/graph/badge.svg?token=FQ0326VqEJ)](https://codecov.io/gh/Team-Elrond/product-overview)
 
 ## Setup
 
