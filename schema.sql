@@ -49,4 +49,3 @@ CREATE TABLE sku (
   size_id serial REFERENCES sizes (size_id) ON DELETE CASCADE,
   quantity INTEGER NOT NULL
 );
-
