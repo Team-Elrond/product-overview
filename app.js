@@ -4,7 +4,8 @@ const express = require('express');
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
-const router = require('./routes/listproducts');
+const listProducts = require('./routes/listProducts');
+const productInfo = require('./routes/productInfo');
 
 dotenv.config();
 
@@ -19,7 +20,8 @@ const app = express();
 app.use(compression());
 app.use(express.json());
 
-app.use(router);
+app.use(listProducts);
+app.use(productInfo);
 
 if (HTTP_PORT) {
   http.createServer(app).listen(HTTP_PORT);
