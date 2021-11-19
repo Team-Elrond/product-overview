@@ -4,7 +4,7 @@ const express = require('express');
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
-const router = require('./routes/listproducts.js');
+const router = require('./routes/listproducts');
 
 dotenv.config();
 
