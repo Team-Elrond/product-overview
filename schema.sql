@@ -23,11 +23,11 @@ CREATE TABLE styles (
   product_id serial REFERENCES products (product_id) ON DELETE CASCADE
 );
 
-CREATE TABLE style_photos (
-  style_photos_id serial PRIMARY KEY,
-  thumbnail_url VARCHAR(300) DEFAULT NULL,
-  url VARCHAR(300) DEFAULT NULL,
-  style_id serial REFERENCES styles (style_id) ON DELETE CASCADE
+CREATE TABLE photos (
+  photos_id serial PRIMARY KEY,
+  style_id serial REFERENCES styles (style_id) ON DELETE CASCADE,
+  url text DEFAULT NULL,
+  thumbnail_url text DEFAULT NULL
 );
 
 CREATE TABLE products_and_features (

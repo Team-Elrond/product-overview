@@ -10,6 +10,7 @@ extends:
 - airbnb-base
 
 rules:
+  no-await-in-loop: off
   arrow-parens: off
   camelcase: off
   comma-dangle: off
