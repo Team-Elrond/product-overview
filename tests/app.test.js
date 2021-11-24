@@ -1,5 +1,8 @@
 const request = require('supertest');
 const app = require('../app');
+const client = require('../database/db');
+
+afterAll(done => client.end(done));
 
 describe('GET /products', () => {
   describe('when a request is made with no params', () => {
