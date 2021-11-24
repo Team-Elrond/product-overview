@@ -8,8 +8,17 @@ listProducts.get('/products', async (req, res) => {
   const count = req.query.count || 5;
   const page = req.query.page || 1;
   const params = [count, (page - 1) * count];
-  const products = await client.query(listProductsQuery, params);
-  res.send(products.rows);
+  await client.query(listProductsQuery, params)
+    .then(data => {
+      res.status(200);
+      res.send(data.rows);
+    }
+    )
+    .catch(err => {
+      res.status(404);
+      res.send(err);
+    }
+    );
 });
 
 module.exports = listProducts;
