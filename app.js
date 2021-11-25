@@ -8,6 +8,7 @@ const listproducts = require('./routes/listproducts');
 const productInfo = require('./routes/productInfo');
 const styles = require('./routes/styles');
 const related = require('./routes/related');
+const cart = require('./routes/cart');
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.use(listproducts);
 app.use(productInfo);
 app.use(styles);
 app.use(related);
+app.use(cart);
 
 if (HTTP_PORT) {
   http.createServer(app).listen(HTTP_PORT);

@@ -49,3 +49,10 @@ CREATE TABLE sku (
   size_id serial REFERENCES sizes (size_id) ON DELETE CASCADE,
   quantity INTEGER NOT NULL
 );
+
+CREATE TABLE cart (
+  cart_id serial PRIMARY KEY,
+  user_session INTEGER NOT NULL,
+  product_id serial REFERENCES products (product_id) ON DELETE CASCADE,
+  active BOOLEAN NOT NULL
+);
