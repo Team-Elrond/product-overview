@@ -22,12 +22,14 @@ afterAll(done => client.end(done));
 describe('GET /products', () => {
   describe('when a request is made with no params', () => {
     test('should return 5 products by default', async () => {
+      jest.setTimeout(30000);
       await request(app).get('/products')
         .then(response => {
           expect(response.body.length).toBe(5);
         });
     });
     test('should return first 5 products in database by default', async () => {
+      jest.setTimeout(30000);
       await request(app).get('/products')
         .then(response => {
           expect(response.body[0].name).toEqual(expect.stringContaining('Camo Onesie'));
@@ -38,12 +40,14 @@ describe('GET /products', () => {
         });
     });
     test('should respond with a 200 status code', async () => {
+      jest.setTimeout(30000);
       await request(app).get('/products')
         .then(response => {
           expect(response.statusCode).toBe(200);
         });
     });
     test('should specify json in the content type header', async () => {
+      jest.setTimeout(30000);
       await request(app).get('/products')
         .then(response => {
           expect(response.headers['content-type']).toEqual(expect.stringContaining('json'));
@@ -52,6 +56,7 @@ describe('GET /products', () => {
   });
   describe('when a request is made with params', () => {
     test('should return number products based on count param', async () => {
+      jest.setTimeout(30000);
       await request(app).get('/products/?count=3')
         .then(response => {
           expect(response.body.length).toBe(3);
@@ -62,6 +67,7 @@ describe('GET /products', () => {
         });
     });
     test('should return products based on page param', async () => {
+      jest.setTimeout(30000);
       await request(app).get('/products/?count=3&page=2')
         .then(response => {
           expect(response.body.length).toBe(3);
@@ -75,6 +81,7 @@ describe('GET /products', () => {
 
 describe('GET /products/:product_id', () => {
   test('should return a product', async () => {
+    jest.setTimeout(30000);
     await request(app).get('/products/1')
       .then(response => {
         expect(response.body.id).toBe(1);
@@ -83,6 +90,7 @@ describe('GET /products/:product_id', () => {
       });
   });
   test('should return error on invalid id', async () => {
+    jest.setTimeout(30000);
     await request(app).get('/products/a')
       .then(response => {
         expect(response.body.name).toEqual((expect.stringContaining('error')));
@@ -93,7 +101,7 @@ describe('GET /products/:product_id', () => {
 
 describe('GET /products/:product_id/styles', () => {
   test('should return all styles for a give product id', async () => {
-    jest.setTimeout(6000);
+    jest.setTimeout(30000);
     await request(app).get('/products/1/styles')
       .then(response => {
         expect(response.body.results.length).toBe(6);
@@ -101,18 +109,21 @@ describe('GET /products/:product_id/styles', () => {
       });
   });
   test('should return photos for each style', async () => {
+    jest.setTimeout(30000);
     await request(app).get('/products/1/styles')
       .then(response => {
         expect(response.body.results[0].photos).toBeDefined();
       });
   });
   test('should return skus for each style', async () => {
+    jest.setTimeout(30000);
     await request(app).get('/products/1/styles')
       .then(response => {
         expect(response.body.results[0].skus).toBeDefined();
       });
   });
   test('should return error on invalid id', async () => {
+    jest.setTimeout(30000);
     await request(app).get('/products/a/styles')
       .then(response => {
         expect(response.body.name).toEqual((expect.stringContaining('error')));
@@ -123,6 +134,7 @@ describe('GET /products/:product_id/styles', () => {
 
 describe('GET /products/:product_id/related', () => {
   test('should return related products given a product id', async () => {
+    jest.setTimeout(30000);
     await request(app).get('/products/1/related')
       .then(response => {
         expect(response.body.length).toBe(4);
@@ -130,6 +142,7 @@ describe('GET /products/:product_id/related', () => {
       });
   });
   test('should return error on invalid id', async () => {
+    jest.setTimeout(30000);
     await request(app).get('/products/a/related')
       .then(response => {
         expect(response.body.name).toEqual((expect.stringContaining('error')));
