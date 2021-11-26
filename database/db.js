@@ -1,19 +1,9 @@
 const { Client } = require('pg');
+const dotenv = require('dotenv');
 
-const client = new Client({
-  user: 'ajpsyk',
-  host: 'localhost',
-  database: 'product_overview',
-  password: '',
-  port: 5432
-});
+dotenv.config();
 
-client.connect((err) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log('connected to postgres');
-  }
-});
+const client = new Client(process.env.DB_URL);
+client.connect();
 
 module.exports = client;

@@ -18,17 +18,6 @@ styles.get('/products/:product_id/styles', async (req, res) => {
       res.status(404);
       res.send(err);
     });
-
-  // const stylesList = {};
-  // stylesList.product_id = req.params.product_id;
-  // stylesList.results = styles.rows;
-
-  // for (var result of stylesList.results) {
-  //   const photos = await client.query(photosQuery, [result.style_id]);
-  //   const skus = await client.query(skuQuery, [result.style_id]);
-  //   result.photos = photos.rows;
-  //   result.skus = skus.rows;
-  // }
 });
 
 module.exports = styles;

@@ -16,17 +16,6 @@ productInfo.get('/products/:product_id', async (req, res) => {
       res.send(err);
     }
     );
-  // const features = await client.query(featuresQuery, [req.params.product_id]);
-
-  // const productWithFeatures = product.rows[0];
-  // if (!productWithFeatures) {
-  //   res.status(404);
-  //   res.send({});
-  // } else {
-  //   productWithFeatures.features = features.rows;
-  //   res.status(200);
-  //   res.send(productWithFeatures);
-  // }
 });
 
 module.exports = productInfo;
