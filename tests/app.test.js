@@ -56,9 +56,9 @@ describe('GET /products', () => {
         .then(response => {
           expect(response.body.length).toBe(3);
         });
-      await request(app).get('/products/?count=20')
+      await request(app).get('/products/?count=6')
         .then(response => {
-          expect(response.body.length).toBe(20);
+          expect(response.body.length).toBe(6);
         });
     });
     test('should return products based on page param', async () => {
