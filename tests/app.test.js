@@ -3,7 +3,7 @@ const app = require('../app');
 const client = require('../database/db');
 
 beforeAll(() =>
-  client.query('CREATE TABLE IF NOT EXISTS products (id serial PRIMARY KEY, name VARCHAR(60) NOT NULL, slogan VARCHAR(60) NOT NULL, description VARCHAR(60) NOT NULL, category VARCHAR(60) NOT NULL, default_price VARCHAR(60) NOT NULL)')
+  client.query('CREATE TABLE IF NOT EXISTS products (id serial PRIMARY KEY, name VARCHAR(60) NOT NULL, slogan VARCHAR(60) NOT NULL, description VARCHAR(1000) NOT NULL, category VARCHAR(60) NOT NULL, default_price VARCHAR(60) NOT NULL)')
     .then(() => client.query('CREATE TABLE IF NOT EXISTS features (feature_id serial PRIMARY KEY, product_id serial REFERENCES products (id) ON DELETE CASCADE, feature VARCHAR(30) NOT NULL, value VARCHAR(30) NOT NULL)'))
     .then(() => client.query('CREATE TABLE IF NOT EXISTS styles (style_id serial PRIMARY KEY, product_id serial REFERENCES products (id) ON DELETE CASCADE, name VARCHAR(30) NOT NULL, sale_price VARCHAR(30) DEFAULT NULL, original_price VARCHAR(30) NOT NULL, default_style BOOLEAN NOT NULL)'))
     .then(() => client.query('CREATE TABLE IF NOT EXISTS photos (photos_id serial PRIMARY KEY, style_id_photos serial REFERENCES styles (style_id) ON DELETE CASCADE, url TEXT DEFAULT NULL, thumbnail_url TEXT DEFAULT NULL)'))
