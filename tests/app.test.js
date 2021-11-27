@@ -95,7 +95,6 @@ describe('GET /products/:product_id/styles', () => {
   test('should return all styles for a give product id', async () => {
     await request(app).get('/products/1/styles')
       .then(response => {
-        console.log(response.body);
         expect(response.body.results.length).toBe(6);
         expect(response.statusCode).toBe(200);
       });

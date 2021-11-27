@@ -13,11 +13,11 @@ styles.get('/products/:product_id/styles', async (req, res) => {
         results: data.rows
       };
       res.send(styles);
+    })
+    .catch(err => {
+      res.status(404);
+      res.send(err);
     });
-//     .catch(err => {
-//       res.status(404);
-//       res.send(err);
-//     });
- });
+});
 
 module.exports = styles;
