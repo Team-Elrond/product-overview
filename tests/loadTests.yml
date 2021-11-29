@@ -1,0 +1,19 @@
+config:
+  target: "http://localhost:8080"
+  phases:
+    - duration: 60
+      arrivalRate: 100
+      name: 100 RPS sustained
+
+
+scenarios:
+  - name: "Test all endpoints"
+    flow:
+      - get:
+          url: "/products/?page=200002&count=5"
+      - get:
+          url: "/products/1000006"
+      - get:
+          url: "/products/1000006/styles"
+      - get:
+          url: "/products/1000006/related"
