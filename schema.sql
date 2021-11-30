@@ -1,58 +1,51 @@
 CREATE TABLE products (
-  product_id serial PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   name VARCHAR(60) NOT NULL,
-  slogan VARCHAR(60) NOT NULL,
+  slogan VARCHAR(200) NOT NULL,
   description VARCHAR(1000) NOT NULL,
   category VARCHAR(30) NOT NULL,
-  default_price VARCHAR(30) NOT NULL,
-  created_at VARCHAR(30) NOT NULL,
-  updated_at VARCHAR(30) NOT NULL
+  default_price VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE features (
-  feature_id serial PRIMARY KEY,
-  feature VARCHAR(30) NOT NULL
+  feature_id SERIAL PRIMARY KEY,
+  product_id SERIAL REFERENCES products (product_id) ON DELETE CASCADE,
+  feature VARCHAR(30) NOT NULL,
+  value VARCHAR(30) DEFAULT NULL
 );
 
 CREATE TABLE styles (
-  style_id serial PRIMARY KEY,
+  style_id SERIAL PRIMARY KEY,
+  product_id SERIAL REFERENCES products (product_id) ON DELETE CASCADE,
   name VARCHAR(30) NOT NULL,
   original_price VARCHAR(30) NOT NULL,
   sale_price VARCHAR(30) DEFAULT NULL,
-  default BOOLEAN NOT NULL DEFAULT FALSE,
-  product_id serial REFERENCES products (product_id) ON DELETE CASCADE
+  'default?' BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE photos (
-  photos_id serial PRIMARY KEY,
-  style_id serial REFERENCES styles (style_id) ON DELETE CASCADE,
-  url text DEFAULT NULL,
-  thumbnail_url text DEFAULT NULL
-);
-
-CREATE TABLE products_and_features (
-  products_and_features_id serial PRIMARY KEY,
-  product_id REFERENCES products (product_id) ON DELETE CASCADE,
-  feature_id REFERENCES features (feature_id) ON DELETE CASCADE,
-  value INTEGER DEFAULT NULL
-);
-
-CREATE TABLE sizes (
-  size_id serial PRIMARY KEY,
-  size VARCHAR(10) NOT NULL
+  photos_id SERIAL PRIMARY KEY,
+  style_id_photos SERIAL REFERENCES styles (style_id) ON DELETE CASCADE,
+  url TEXT DEFAULT NULL,
+  thumbnail_url TEXT DEFAULT NULL
 );
 
 CREATE TABLE sku (
-  sku INTEGER NULL AUTO_INCREMENT,
-  product_id REFERENCES products (product_id) ON DELETE CASCADE,
-  style_id serial REFERENCES styles (style_id) ON DELETE CASCADE,
-  size_id serial REFERENCES sizes (size_id) ON DELETE CASCADE,
+  sku SERIAL PRIMARY KEY,
+  style_id_sku SERIAL REFERENCES styles (style_id) ON DELETE CASCADE,
+  size VARCHAR(10) NOT NULL,
   quantity INTEGER NOT NULL
 );
 
 CREATE TABLE cart (
-  cart_id serial PRIMARY KEY,
+  cart_id SERIAL PRIMARY KEY,
   user_session INTEGER NOT NULL,
-  product_id serial REFERENCES products (product_id) ON DELETE CASCADE,
+  product_id SERIAL REFERENCES products (product_id) ON DELETE CASCADE,
   active BOOLEAN NOT NULL
 );
+
+CREATE INDEX ON features (product_id);
+CREATE INDEX ON styles (product_id);
+CREATE INDEX ON photos (styles_id_photos);
+CREATE INDEX ON sku (styles_id_sku);
+CREATE INDEX ON related_items (product_id);
